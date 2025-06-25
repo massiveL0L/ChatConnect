@@ -1,44 +1,36 @@
+private void LoadHtml()
+{
+    string html = @"
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>qwerty loading</title>
+  <meta charset='UTF-8'>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: #0f0;
+    body {
+      background-color: black;
+      color: lime;
       font-family: monospace;
       font-size: 2em;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
-    }
-
-    .console {
-      white-space: pre;
-    }
-
-    .dots::after {
-      content: "";
-      animation: dots 1.2s steps(3, end) infinite;
-    }
-
-    @keyframes dots {
-      0%   { content: "";    }
-      33%  { content: ".";   }
-      66%  { content: "..";  }
-      100% { content: "..."; }
+      margin: 0;
     }
   </style>
 </head>
 <body>
-  <div class="console">
-    qwerty loading<span class="dots"></span>
-  </div>
+  <div>qwerty loading<span id='dots'></span></div>
+
+  <script>
+    let dots = document.getElementById('dots');
+    let count = 0;
+    setInterval(() => {
+      count = (count + 1) % 4;
+      dots.textContent = '.'.repeat(count);
+    }, 400);
+  </script>
 </body>
-</html>
+</html>";
+    webBrowser1.DocumentText = html;
+}
